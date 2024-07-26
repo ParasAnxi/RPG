@@ -11,18 +11,20 @@ class Player
 private:
 	Texture texture;
 	vector<RectangleShape>bullets;
-	float bulletSpeed = 5.0f;
+	float bulletSpeed;
 	RectangleShape boundingRectangle;
 	float width = 32;
 	float height = 32;
 	Vector2i size;
-	float playerSpeed = 1.0f;
+	float playerSpeed;
 public:
 	Sprite sprite;
 public:
+	Player();
+	~Player();
 	void Initialize();
 	void Load();
 	void Update(Enemy &enemy,float deltaTime);
-	void Draw(RenderWindow& wondow);
+	void Draw(RenderWindow& window);
 };
 

@@ -1,23 +1,18 @@
 #pragma once
-
 #include<SFML/Graphics.hpp>
 using namespace sf;
-
-class Enemy
+class FrameRate
 {
 private:
-	Texture texture;
-	RectangleShape boundingRectangle;
-	float width = 32;
-	float height = 32;
-	Vector2i size;
+	Text frameRate;
+	Font font;
+	float timer;
 public:
-	Sprite sprite;
-public:
-	Enemy();
-	~Enemy();
+	FrameRate();
+	~FrameRate();
 	void Initialize();
 	void Load();
 	void Update(double deltaTime);
 	void Draw(RenderWindow& window);
 };
+

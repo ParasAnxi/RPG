@@ -1,6 +1,12 @@
 #include "Enemy.h"
 #include<iostream>
 using namespace std;
+Enemy::Enemy()
+{
+}
+Enemy::~Enemy() {
+
+}
 void Enemy::Initialize()
 {
     boundingRectangle.setFillColor(Color::Transparent);
@@ -26,7 +32,7 @@ void Enemy::Load()
     }
 }
 
-void Enemy::Update(float deltaTime)
+void Enemy::Update(double deltaTime)
 {
     boundingRectangle.setPosition(sprite.getPosition());
 }

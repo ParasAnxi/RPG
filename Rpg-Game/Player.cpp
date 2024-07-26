@@ -4,15 +4,24 @@
 
 using namespace std;
 
+Player::Player():
+    bulletSpeed(0.5f),
+    playerSpeed(1.0f)
+{
+}
+Player::~Player()
+{
+}
+void Player::Load()
+{
+}
 void Player::Initialize()
 {
     boundingRectangle.setFillColor(Color::Transparent);
     boundingRectangle.setOutlineColor(Color::Red);
     boundingRectangle.setOutlineThickness(1);
     size = Vector2i(32, 32);
-}
-void Player::Load()
-{
+
     if (texture.loadFromFile("assests/player/textures/player.png")) {
         cout << "Sprite loaded successfully!";
         sprite.setTexture(texture);
