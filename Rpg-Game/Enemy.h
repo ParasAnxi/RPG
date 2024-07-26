@@ -11,11 +11,15 @@ private:
 	float width = 32;
 	float height = 32;
 	Vector2i size;
+	Text enemyHealthBar;
+	Font font;
 public:
 	Sprite sprite;
+	int health;
 public:
 	Enemy();
 	~Enemy();
+	void SetHealth(int hp);
 	void Initialize();
 	void Load();
 	void Update(double deltaTime);

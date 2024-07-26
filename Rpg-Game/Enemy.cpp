@@ -1,11 +1,17 @@
 #include "Enemy.h"
 #include<iostream>
 using namespace std;
-Enemy::Enemy()
+Enemy::Enemy():
+    health(100)
 {
 }
 Enemy::~Enemy() {
 
+}
+void Enemy::SetHealth(int hp)
+{
+    health += hp;
+    enemyHealthBar.setString(to_string(health));
 }
 void Enemy::Initialize()
 {
@@ -17,10 +23,19 @@ void Enemy::Initialize()
 
 void Enemy::Load()
 {
+    if (font.loadFromFile("assests/fonts/Arial.ttf")) {
+        cout << "font loaded" << endl;
+        enemyHealthBar.setFont(font);
+        enemyHealthBar.setString(to_string(health));
+    }
+    else {
+        cout << "font not laoded" << endl;
+    }
     if (texture.loadFromFile("assests/player/textures/enemy.png")) {
         cout << "Sprite loaded successfully!";
         sprite.setTexture(texture);
         sprite.setPosition(Vector2f(1600, 700));
+        
         int xIndex = 0;
         int yIndex = 0;
         sprite.setTextureRect(IntRect(xIndex * size.x, yIndex * size.y, size.x, size.y));
@@ -34,11 +49,17 @@ void Enemy::Load()
 
 void Enemy::Update(double deltaTime)
 {
-    boundingRectangle.setPosition(sprite.getPosition());
+    if (health > 0) {
+        boundingRectangle.setPosition(sprite.getPosition());
+        enemyHealthBar.setPosition(sprite.getPosition());
+    }
 }
 
 void Enemy::Draw(RenderWindow& window)
 {
-    window.draw(boundingRectangle);
-    window.draw(sprite);
+    if (health > 0) {
+        window.draw(sprite);
+        window.draw(enemyHealthBar);
+        window.draw(boundingRectangle);
+    }
 }

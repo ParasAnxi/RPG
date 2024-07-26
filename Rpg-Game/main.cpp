@@ -30,10 +30,11 @@ int main(){
             if (event.type == Event::Closed)
                 window.close();
         }
+        Vector2f mousePosition = Vector2f(Mouse::getPosition(window));
         Time deltaTimeCounter = clock.restart();
         double deltaTime = deltaTimeCounter.asMicroseconds() / 1000.0;
         frame.Update(deltaTime);
-        player.Update(enemy,deltaTime);
+        player.Update(enemy,deltaTime,mousePosition);
         enemy.Update(deltaTime);
     //------------------------------ DRAW  ---------------------------------//
         window.clear(Color::Black);
