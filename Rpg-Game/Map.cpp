@@ -33,7 +33,6 @@ void Map::Load()
                 int i = x + y * totalTilesX;
 
                 tiles[i].id = i;
-                tiles[i].texture = &tileSheetTexture;
                 tiles[i].position = Vector2i(x * tileWidth, y * tileHeight);
 
 
@@ -56,7 +55,7 @@ void Map::Load()
 
             int index = mapNumbers[i];
 
-            mapSprites[i].setTexture(*tiles[index].texture);
+            mapSprites[i].setTexture(tileSheetTexture);
             mapSprites[i].setTextureRect(IntRect(
                     tiles[index].position.x,
                     tiles[index].position.y,
