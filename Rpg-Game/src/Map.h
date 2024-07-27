@@ -2,6 +2,8 @@
 #include<SFML/Graphics.hpp>
 #include "Tile.h"
 using namespace sf;
+
+
 class Map
 {
 	Texture tileSheetTexture;
@@ -14,12 +16,17 @@ class Map
 	int totalTilesX;
 	int totalTilesY;
 
-	int mapNumbers[6] = {
+	static const int mapSize = 6;
+
+	int mapWidth;
+	int mapHeight;
+
+	int mapNumbers[mapSize] = {
 		120 ,121 ,122,
 		144,145,146
 	};
 
-	Sprite mapSprites[6];
+	Sprite mapSprites[mapSize];
 
 public:
 	Map();

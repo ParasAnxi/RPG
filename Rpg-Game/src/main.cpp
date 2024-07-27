@@ -3,6 +3,8 @@
 #include "Enemy.h"
 #include "FrameRate.h"
 #include "Map.h"
+#include "MapLoader.h"
+
 using namespace sf;
 using namespace std;
 int main(){
@@ -16,6 +18,10 @@ int main(){
     Enemy enemy;
     FrameRate frame;
     Map map;
+
+    MapLoader maploader;
+    maploader.Load("assests/maps/lvl1.rmap");
+
     player.Initialize();
     enemy.Initialize();
     frame.Initialize();

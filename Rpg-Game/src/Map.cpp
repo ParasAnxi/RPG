@@ -2,7 +2,8 @@
 #include<iostream>
 using namespace std;
 Map::Map():
-    tileWidth(16),tileHeight(16),totalTilesX(0),totalTilesY(0)
+    tileWidth(16),tileHeight(16),totalTilesX(0),totalTilesY(0),
+    mapWidth(3),mapHeight(2),totalTiles(0),tiles(nullptr)
 {
 }
 
@@ -48,10 +49,10 @@ void Map::Load()
     else {
         cout << "tile not loaded!";
     }
-    for (size_t y = 0; y < 2; y++) {
-        for (size_t x = 0; x < 3; x++) {
+    for (size_t y = 0; y < mapHeight; y++) {
+        for (size_t x = 0; x < mapWidth; x++) {
 
-            int i = x + y * 3;
+            int i = x + y * mapWidth;
 
             int index = mapNumbers[i];
 
@@ -62,8 +63,11 @@ void Map::Load()
                     tileWidth,
                     tileHeight)
             );
-            mapSprites[i].setPosition(Vector2f(x * 16 * 5 , 100 + y * 16 * 5));
             mapSprites[i].setScale(Vector2f(5,5));
+            mapSprites[i].setPosition(Vector2f(
+                x * tileWidth * mapSprites[i].getScale().x,
+                100 + y * tileHeight * mapSprites[i].getScale().y));
+
 
         }
     }
@@ -75,7 +79,7 @@ void Map::Update(float deltaTime)
 
 void Map::Draw(RenderWindow& window)
 {
-    for (size_t i = 0; i < 6; i++) {
+    for (size_t i = 0; i < mapSize; i++) {
         window.draw(mapSprites[i]);
     }
 }
