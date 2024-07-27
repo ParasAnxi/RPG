@@ -7,6 +7,7 @@ struct Tile
 {
 	int id = -1;
 	Texture* texture;
-	Sprite sprite;
+	IntRect rect;
+	Vector2i position;
 };
 

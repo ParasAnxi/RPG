@@ -14,6 +14,13 @@ class Map
 	int totalTilesX;
 	int totalTilesY;
 
+	int mapNumbers[6] = {
+		120 ,121 ,122,
+		144,145,146
+	};
+
+	Sprite mapSprites[6];
+
 public:
 	Map();
 	~Map();
