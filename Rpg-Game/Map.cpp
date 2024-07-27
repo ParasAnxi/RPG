@@ -17,14 +17,29 @@ void Map::Initialize()
 void Map::Load()
 {
     if (tileSheetTexture.loadFromFile("assests/world/tilesheet.png")) {
+        
+        cout << "tile loaded successfully!";
+
         totalTilesX = tileSheetTexture.getSize().x / tileWidth;
         totalTilesY = tileSheetTexture.getSize().y / tileHeight;
-        cout << "tile loaded successfully!";
-        for (size_t i = 0; i < 10; i++) {
-            sprite[i].setTexture(tileSheetTexture);
-            sprite[i].setTextureRect(IntRect(i * tileWidth,  0 * tileHeight, tileWidth, tileHeight));
-            sprite[i].setScale(Vector2f(5, 5));
-            sprite[i].setPosition(Vector2f(100 + i * tileWidth * 5, 100));
+
+        totalTiles = totalTilesX + totalTilesY;
+
+        tiles = new Tile[totalTiles];
+
+        for (size_t y = 0; y < totalTilesY; y++) {
+            for (size_t x = 0; x < totalTilesX; x++) {
+                int i = x + y * totalTilesX;
+
+                tiles[i].id = i;
+                tiles[i].texture = &tileSheetTexture;
+
+                tiles[i].sprite.setTexture(tileSheetTexture);
+                tiles[i].sprite.setTextureRect(IntRect(x * tileWidth, y * tileHeight, tileWidth, tileHeight));
+
+                tiles[i].sprite.setScale(Vector2f(5, 5));
+                tiles[i].sprite.setPosition(Vector2f(x * tileWidth * 5, 100 + y * tileWidth * 5));
+            }
         }
     }
     else {
@@ -38,7 +53,7 @@ void Map::Update(float deltaTime)
 
 void Map::Draw(RenderWindow& window)
 {
-    for (size_t i = 0; i < 10; i++) {
-        window.draw(sprite[i]);
+    for (size_t i = 0; i < totalTiles; i++) {
+        window.draw(tiles[i].sprite);
     }
 }

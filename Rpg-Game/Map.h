@@ -1,11 +1,13 @@
 #pragma once
 #include<SFML/Graphics.hpp>
+#include "Tile.h"
 using namespace sf;
 class Map
 {
 	Texture tileSheetTexture;
-	Sprite sprite[10];
 
+	Tile*  tiles;
+	int totalTiles;
 	int tileWidth;
 	int tileHeight;
 
