@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "FrameRate.h"
+#include "Map.h"
 using namespace sf;
 using namespace std;
 int main(){
@@ -14,14 +15,17 @@ int main(){
     Player player;
     Enemy enemy;
     FrameRate frame;
+    Map map;
     player.Initialize();
     enemy.Initialize();
     frame.Initialize();
+    map.Initialize();
 
     //------------------------------ LOAD ---------------------------------//
     player.Load();
     enemy.Load();
     frame.Load();
+    map.Load();
     //------------------------------ UPDATE 
     Clock clock;
     while (window.isOpen()) {
@@ -36,8 +40,10 @@ int main(){
         frame.Update(deltaTime);
         player.Update(enemy,deltaTime,mousePosition);
         enemy.Update(deltaTime);
+        map.Update(deltaTime);
     //------------------------------ DRAW  ---------------------------------//
         window.clear(Color::Black);
+        map.Draw(window);
         player.Draw(window);
         enemy.Draw(window);
         frame.Draw(window);
